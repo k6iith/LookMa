@@ -1,7 +1,4 @@
-/**
- * LookMa Checkers Engine & UI Manager
- */
-
+// Web Audio synthesizer for sound effects
 class SoundManager {
     constructor() {
         this.ctx = null;

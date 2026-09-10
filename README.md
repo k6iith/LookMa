@@ -1,55 +1,33 @@
 # LookMa Checkers
 
-A sleek, responsive, zero-dependency web-based Checkers (Draughts) game built with HTML5, CSS3, and modern JavaScript.
-
-Repository: `https://github.com/k6iith/LookMa.git`
-
-![LookMa Banner](index.html)
+A web-based checkers game featuring local 2-player mode and an AI opponent built with vanilla HTML5, CSS3, and JavaScript.
 
 ## Features
 
-- **Multiple Game Modes**:
-  - **vs AI (Computer)**: Play solo against the Minimax AI engine with adjustable difficulties (Easy, Medium, Hard).
-  - **2 Players (Local)**: Play face-to-face on the same screen.
-- **Full Checkers Rule Enforcement**:
-  - Valid diagonal moves & highlight move targets.
-  - Single and multi-jump captures.
-  - Optional mandatory capture enforcement.
-  - Automatic King promotion (with King movements in all diagonal directions).
-- **Interactive UI & Polish**:
-  - Live score tracking and captured piece displays.
-  - Move history log with standard checker notation (`RED B6 -> C5`).
-  - Move undo/redo stack.
-  - Best move Hint button.
-  - Game match timer.
-  - Synthesized web audio sound effects for moves, captures, kinging, and victory.
+- **2 Game Modes**: Play against a local player or against an AI with 3 difficulty levels (Easy, Medium, Hard).
+- **Checkers Engine**:
+  - Valid move highlighting
+  - Single and multi-jump captures
+  - Mandatory jump option
+  - King promotion & movement
+  - Move history tracking and undo support
+- **Audio & Visuals**:
+  - Web Audio API synthesizer for move and win sound effects
+  - Responsive wooden board theme with king crowns and indicators
 
-## Quick Start
+## Running the Game
 
-You can run the application using Python's built-in HTTP server:
+Run the included Python server to launch locally:
 
 ```bash
 python server.py
 ```
 
-This will automatically launch `http://localhost:8000` in your default web browser.
+Or simply open `index.html` directly in any web browser.
 
-Alternatively, you can open `index.html` directly in any web browser!
+## Tech Stack
 
-## Project Structure
-
-- `index.html` - Game structure and UI layout.
-- `style.css` - Custom visual theme and board animations.
-- `game.js` - Checkers rule engine, Minimax AI, audio synth, and game manager.
-- `server.py` - Local Python dev server.
-
-## Pushing Changes to GitHub
-
-To push this initialized project to the remote repository `https://github.com/k6iith/LookMa.git`:
-
-```bash
-git add .
-git commit -m "Initialize LookMa Checkers game project"
-git branch -M main
-git push -u origin main
-```
+- **Frontend**: HTML5, CSS3, Vanilla JS (ES6)
+- **AI Engine**: Minimax algorithm with alpha-beta pruning
+- **Audio**: Web Audio API (no external audio assets required)
+- **Server**: Python `http.server`
