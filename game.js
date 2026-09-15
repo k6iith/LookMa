@@ -78,6 +78,7 @@ class CheckersGame {
         this.timerSeconds = 0;
         this.timerInterval = null;
         this.isGameOver = false;
+        this.matchCounter = 0;
 
         this.sounds = new SoundManager();
 
@@ -106,6 +107,11 @@ class CheckersGame {
         this.btnNewGame = document.getElementById('btn-new-game');
         this.btnUndo = document.getElementById('btn-undo');
         this.btnHint = document.getElementById('btn-hint');
+
+        this.counterValueEl = document.getElementById('counter-value');
+        this.btnCounterMinus = document.getElementById('btn-counter-minus');
+        this.btnCounterZero = document.getElementById('btn-counter-zero');
+        this.btnCounterPlus = document.getElementById('btn-counter-plus');
 
         this.modalEl = document.getElementById('victory-modal');
         this.modalTitleEl = document.getElementById('modal-title');
@@ -138,10 +144,39 @@ class CheckersGame {
         this.btnNewGame.addEventListener('click', () => this.startNewGame());
         this.btnUndo.addEventListener('click', () => this.undoMove());
         this.btnHint.addEventListener('click', () => this.showHint());
+
+        if (this.btnCounterMinus) {
+            this.btnCounterMinus.addEventListener('click', () => {
+                this.matchCounter--;
+                this.updateCounterDisplay();
+                this.sounds.playTone(280, 'sine', 0.08, 0.08);
+            });
+        }
+        if (this.btnCounterZero) {
+            this.btnCounterZero.addEventListener('click', () => {
+                this.matchCounter = 0;
+                this.updateCounterDisplay();
+                this.sounds.playTone(350, 'triangle', 0.1, 0.08);
+            });
+        }
+        if (this.btnCounterPlus) {
+            this.btnCounterPlus.addEventListener('click', () => {
+                this.matchCounter++;
+                this.updateCounterDisplay();
+                this.sounds.playTone(440, 'sine', 0.08, 0.08);
+            });
+        }
+
         this.modalRestartBtn.addEventListener('click', () => {
             this.modalEl.classList.add('hidden');
             this.startNewGame();
         });
+    }
+
+    updateCounterDisplay() {
+        if (this.counterValueEl) {
+            this.counterValueEl.textContent = this.matchCounter;
+        }
     }
 
     startNewGame() {
