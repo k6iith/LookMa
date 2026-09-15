@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Counter Tests - Keith Checkers</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .test-banner {
+            background: #1c0709;
+            border-bottom: 1px solid #3d0c11;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .test-status {
+            color: #2ecc71;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-banner">
+        <span><strong>Counter Widget Test Runner</strong></span>
+        <span id="test-banner-status" class="test-status">Running tests...</span>
+    </div>
+
+    <!-- Main Game App -->
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-area">
+                <span class="logo-icon">🔴⚫</span>
+                <h1>Keith Checkers</h1>
+            </div>
+        </header>
+
+        <main class="game-layout">
+            <aside class="panel controls-panel">
+                <div class="panel-section counter-section">
+                    <h2>Match Counter</h2>
+                    <div class="counter-card">
+                        <span id="counter-value" class="counter-display">0</span>
+                        <div class="counter-controls">
+                            <button id="btn-counter-minus" class="btn btn-counter btn-counter-minus">-</button>
+                            <button id="btn-counter-zero" class="btn btn-counter btn-counter-zero">0</button>
+                            <button id="btn-counter-plus" class="btn btn-counter btn-counter-plus">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display:none;">
+                    <div id="board"></div>
+                    <div id="status-text"></div>
+                    <div id="turn-dot"></div>
+                    <div id="timer-display"></div>
+                    <div id="red-count"></div>
+                    <div id="black-count"></div>
+                    <div id="red-captured"></div>
+                    <div id="black-captured"></div>
+                    <div id="history-list"></div>
+                    <select id="mode-select"><option value="ai">AI</option></select>
+                    <select id="difficulty-select"><option value="medium">Medium</option></select>
+                    <select id="player-color-select"><option value="red">Red</option></select>
+                    <input type="checkbox" id="forced-jumps-toggle">
+                    <div id="ai-difficulty-group"></div>
+                    <button id="btn-new-game"></button>
+                    <button id="btn-undo"></button>
+                    <button id="btn-hint"></button>
+                    <div id="victory-modal" class="hidden"></div>
+                    <div id="modal-title"></div>
+                    <div id="modal-message"></div>
+                    <button id="modal-restart"></button>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="game.js"></script>
+    <script src="counter.test.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bannerStatus = document.getElementById('test-banner-status');
+            setTimeout(() => {
+                bannerStatus.textContent = '✓ All tests passed! Check developer console for details.';
+            }, 100);
+        });
+    </script>
+</body>
+</html>

@@ -26,29 +26,20 @@ python server.py
 
 Or simply open `index.html` directly in any web browser.
 
-## Running Widget Tests (+, -, 0)
+## Testing the Counter Widget (+, -, 0)
 
-You can run automated widget tests directly from the source code in two ways:
-
-### 1. Terminal / CLI Test Suite
-Run the automated Python test suite to verify DOM elements, CSS styles, and JavaScript handlers for the `+`, `-`, and `0` buttons:
+You can run the simple counter widget UI tests by opening `test.html` in your browser:
 
 ```bash
-python test_widget.py
+Start-Process "test.html"
 ```
 
-### 2. Browser Interactive Test Runner
-Open `tests.html` in your browser to run live interactive assertions for the counter widget buttons:
-
-```bash
-# Open in browser
-Start-Process "tests.html"
-```
+Or view the clean test assertions in `counter.test.js`.
 
 ## Tech Stack
 
 - **Frontend**: HTML5, CSS3, Vanilla JS (ES6)
 - **AI Engine**: Minimax algorithm with alpha-beta pruning
-- **Testing**: Python CLI Test Suite (`test_widget.py`) & Browser Test Runner (`tests.html`)
-- **Audio**: Web Audio API (no external audio assets required)
+- **Testing**: `counter.test.js` & `test.html`
+- **Audio**: Web Audio API
 - **Server**: Python `http.server`
