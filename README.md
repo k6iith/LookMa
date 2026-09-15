@@ -1,6 +1,6 @@
-# LookMa Checkers
+# Keith Checkers
 
-A web-based checkers game featuring local 2-player mode and an AI opponent built with vanilla HTML5, CSS3, and JavaScript.
+A web-based checkers game featuring local 2-player mode and an AI opponent built with vanilla HTML5, CSS3, and JavaScript, styled in a sleek red and black ombre aesthetic.
 
 ## Features
 
@@ -11,9 +11,10 @@ A web-based checkers game featuring local 2-player mode and an AI opponent built
   - Mandatory jump option
   - King promotion & movement
   - Move history tracking and undo support
+- **Match Counter**: Dedicated `-`, `0`, and `+` counter controls matching the UI theme.
 - **Audio & Visuals**:
-  - Web Audio API synthesizer for move and win sound effects
-  - Responsive wooden board theme with king crowns and indicators
+  - Web Audio API synthesizer for move, capture, kinging, and win sound effects.
+  - Red & black ombre gradients with responsive board design.
 
 ## Running the Game
 

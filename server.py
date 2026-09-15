@@ -15,7 +15,7 @@ def main():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     url = f"http://localhost:{PORT}"
     
-    print(f"Starting LookMa server at {url}...")
+    print(f"Starting Keith Checkers server at {url}...")
     webbrowser.open(url)
 
     try:
