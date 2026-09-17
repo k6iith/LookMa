@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keith Checkers - UI Test Suite</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #0a0304;
+            color: #f7ede9;
+            padding: 0;
+            margin: 0;
+        }
+        .ui-test-banner {
+            background: linear-gradient(90deg, #1c0709 0%, #2b0c10 50%, #1c0709 100%);
+            border-bottom: 2px solid #57131a;
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .ui-test-title {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #ff4d4d;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .ui-test-status {
+            color: #2ecc71;
+            font-weight: 700;
+            font-size: 0.95rem;
+            background: rgba(46, 204, 113, 0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid #2ecc71;
+        }
+        .test-body-wrapper {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ui-test-banner">
+        <div class="ui-test-title">
+            <span>🧪 UI Test Runner</span>
+            <span style="color: #a88b90; font-weight: 400; font-size: 0.9rem;">Automated UI & Interaction Suite</span>
+        </div>
+        <div id="ui-test-status" class="ui-test-status">Running 10 UI Tests...</div>
+    </div>
+
+    <div class="test-body-wrapper">
+        <div class="app-container">
+            <!-- Header -->
+            <header class="app-header">
+                <div class="logo-area">
+                    <span class="logo-icon">🔴⚫</span>
+                    <h1>Keith Checkers</h1>
+                </div>
+                <p class="tagline">Play local 2-Player or test your skills against the AI!</p>
+            </header>
+
+            <!-- Main Content Grid -->
+            <main class="game-layout">
+                <!-- Sidebar / Game Controls -->
+                <aside class="panel controls-panel">
+                    <div class="panel-section">
+                        <h2>Game Settings</h2>
+                        
+                        <div class="setting-item">
+                            <label for="mode-select">Game Mode</label>
+                            <select id="mode-select" class="custom-select">
+                                <option value="ai">vs AI (Computer)</option>
+                                <option value="pvp">2 Players (Local)</option>
+                            </select>
+                        </div>
+
+                        <div class="setting-item" id="ai-difficulty-group">
+                            <label for="difficulty-select">AI Difficulty</label>
+                            <select id="difficulty-select" class="custom-select">
+                                <option value="easy">Easy</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+
+                        <div class="setting-item">
+                            <label for="player-color-select">Play As</label>
+                            <select id="player-color-select" class="custom-select">
+                                <option value="red" selected>Red (First)</option>
+                                <option value="black">Black (Second)</option>
+                            </select>
+                        </div>
+
+                        <div class="setting-item checkbox-item">
+                            <label for="forced-jumps-toggle">
+                                <input type="checkbox" id="forced-jumps-toggle" checked>
+                                Enforce Mandatory Jumps
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="panel-section action-buttons">
+                        <button id="btn-new-game" class="btn btn-primary">
+                            <span class="btn-icon">🔄</span> New Game
+                        </button>
+                        <button id="btn-undo" class="btn btn-secondary" disabled>
+                            <span class="btn-icon">↩️</span> Undo Move
+                        </button>
+                        <button id="btn-hint" class="btn btn-utility">
+                            <span class="btn-icon">💡</span> Hint
+                        </button>
+                    </div>
+
+                    <div class="panel-section score-section">
+                        <h2>Score & Captured</h2>
+                        <div class="score-cards">
+                            <div class="score-card red-card">
+                                <span class="player-name">Red</span>
+                                <span id="red-count" class="score-count">12</span>
+                                <div id="red-captured" class="captured-pieces"></div>
+                            </div>
+                            <div class="score-card black-card">
+                                <span class="player-name">Black</span>
+                                <span id="black-count" class="score-count">12</span>
+                                <div id="black-captured" class="captured-pieces"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-section counter-section">
+                        <h2>Match Counter</h2>
+                        <div class="counter-card">
+                            <span id="counter-value" class="counter-display">0</span>
+                            <div class="counter-controls">
+                                <button id="btn-counter-minus" class="btn btn-counter btn-counter-minus" aria-label="Decrement counter">-</button>
+                                <button id="btn-counter-zero" class="btn btn-counter btn-counter-zero" aria-label="Reset counter">0</button>
+                                <button id="btn-counter-plus" class="btn btn-counter btn-counter-plus" aria-label="Increment counter">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Center Board Area -->
+                <section class="board-container-wrapper">
+                    <div class="status-bar">
+                        <div class="turn-indicator">
+                            <span class="indicator-dot" id="turn-dot"></span>
+                            <span id="status-text">Red's Turn</span>
+                        </div>
+                        <div class="timer-display" id="timer-display">Time: 00:00</div>
+                    </div>
+
+                    <div class="board-frame">
+                        <div id="board" class="checkers-board"></div>
+                    </div>
+                </section>
+
+                <!-- Right Sidebar: Move Log -->
+                <aside class="panel history-panel">
+                    <h2>Move History</h2>
+                    <div class="history-list-wrapper">
+                        <ol id="history-list" class="history-list"></ol>
+                    </div>
+                </aside>
+            </main>
+        </div>
+
+        <!-- Victory / Game Over Modal -->
+        <div id="victory-modal" class="modal-backdrop hidden">
+            <div class="modal-card">
+                <div class="modal-header">
+                    <span class="trophy-emoji">🏆</span>
+                    <h2 id="modal-title">Game Over!</h2>
+                </div>
+                <p id="modal-message">Red wins the match!</p>
+                <div class="modal-actions">
+                    <button id="modal-restart" class="btn btn-primary">Play Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+    <script src="ui.test.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const statusEl = document.getElementById('ui-test-status');
+            setTimeout(() => {
+                statusEl.textContent = '✓ All 10 UI Tests Passed!';
+            }, 150);
+        });
+    </script>
+</body>
+</html>

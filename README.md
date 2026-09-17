@@ -26,20 +26,28 @@ python server.py
 
 Or simply open `index.html` directly in any web browser.
 
-## Testing the Counter Widget (+, -, 0)
+## Running UI & Widget Tests
 
-You can run the simple counter widget UI tests by opening `test.html` in your browser:
+You can run automated UI and counter widget tests in your browser:
+
+### 1. Full UI Test Suite (`ui.test.js` / `ui-test.html`)
+Tests app branding, 8x8 checkerboard layout, piece counts, move highlight dots, move execution, undo button enabling, and New Game reset:
+
+```bash
+Start-Process "ui-test.html"
+```
+
+### 2. Counter Widget Test Suite (`counter.test.js` / `test.html`)
+Tests counter controls (`+`, `-`, `0`) step-by-step:
 
 ```bash
 Start-Process "test.html"
 ```
 
-Or view the clean test assertions in `counter.test.js`.
-
 ## Tech Stack
 
 - **Frontend**: HTML5, CSS3, Vanilla JS (ES6)
 - **AI Engine**: Minimax algorithm with alpha-beta pruning
-- **Testing**: `counter.test.js` & `test.html`
+- **Testing**: `ui.test.js` (`ui-test.html`) & `counter.test.js` (`test.html`)
 - **Audio**: Web Audio API
 - **Server**: Python `http.server`
