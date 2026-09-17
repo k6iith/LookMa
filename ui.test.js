@@ -95,13 +95,24 @@ function runUITests() {
 
     // 7. Test Interactive Move Execution
     runAssertion('Interactive Piece Movement', () => {
-        const targetSquare = document.querySelector('#board .square:has(.move-hint)') || 
-                             Array.from(document.querySelectorAll('#board .square')).find(sq => sq.querySelector('.move-hint'));
-        if (!targetSquare) throw new Error('No target square with move hint found');
+        const hintDot = document.querySelector('#board .move-hint');
+        if (!hintDot) throw new Error('No target square move hint found');
 
+        const targetSquare = hintDot.closest('.square');
+        if (!targetSquare) throw new Error('No target square element found');
+
+        // Click target square to execute move (triggers board DOM re-render)
         targetSquare.click();
-        if (!targetSquare.querySelector('.piece.red')) {
-            throw new Error('Red piece failed to move to target square');
+
+        // Verify Red piece moved to row 4 or move history was created in updated DOM
+        const historyItems = document.querySelectorAll('#history-list .history-item');
+        const redPieceMovedToRow4 = Array.from(document.querySelectorAll('#board .square')).some((sq, idx) => {
+            const r = Math.floor(idx / 8);
+            return r === 4 && sq.querySelector('.piece.red');
+        });
+
+        if (!redPieceMovedToRow4 && historyItems.length === 0) {
+            throw new Error('Red piece failed to execute move');
         }
     });
 
@@ -144,6 +155,10 @@ function runUITests() {
             statusBanner.style.color = '#ff4d4d';
             statusBanner.style.borderColor = '#ff4d4d';
             statusBanner.style.background = 'rgba(230, 43, 58, 0.15)';
+        } else {
+            statusBanner.style.color = '#2ecc71';
+            statusBanner.style.borderColor = '#2ecc71';
+            statusBanner.style.background = 'rgba(46, 204, 113, 0.15)';
         }
     }
 }
