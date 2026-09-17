@@ -45,6 +45,59 @@
             border-radius: 20px;
             border: 1px solid #2ecc71;
         }
+        
+        .test-results-card {
+            max-width: 1200px;
+            margin: 20px auto 0;
+            background: linear-gradient(160deg, #1c0709 0%, #0d0304 100%);
+            border: 1px solid #3d0c11;
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+        }
+        .test-results-card h2 {
+            font-size: 1.1rem;
+            color: #ff4d4d;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #3d0c11;
+            padding-bottom: 6px;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 10px;
+        }
+        .test-row {
+            background: #140406;
+            border: 1px solid #3d0c11;
+            border-left: 4px solid #2ecc71;
+            border-radius: 6px;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.88rem;
+        }
+        .test-row.failed {
+            border-left-color: #ff4d4d;
+        }
+        .badge-pass {
+            background: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        .badge-fail {
+            background: rgba(230, 43, 58, 0.2);
+            color: #ff4d4d;
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
         .test-body-wrapper {
             padding: 20px;
         }
@@ -60,7 +113,13 @@
     </div>
 
     <div class="test-body-wrapper">
-        <div class="app-container">
+        <!-- Visual Test Results Checklist Card -->
+        <div class="test-results-card">
+            <h2>Live Test Results Checklist</h2>
+            <div id="results-grid" class="results-grid"></div>
+        </div>
+
+        <div class="app-container" style="margin-top: 20px;">
             <!-- Header -->
             <header class="app-header">
                 <div class="logo-area">
@@ -193,13 +252,5 @@
 
     <script src="game.js"></script>
     <script src="ui.test.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const statusEl = document.getElementById('ui-test-status');
-            setTimeout(() => {
-                statusEl.textContent = '✓ All 10 UI Tests Passed!';
-            }, 150);
-        });
-    </script>
 </body>
 </html>
